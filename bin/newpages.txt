@@ -1,0 +1,5 @@
+ruby bin/jekyll-page "Some Page Title doc" doc
+ruby bin/jekyll-page "Some Page Title tut" tut
+ruby bin/jekyll-page "Some Page Title ref" ref
+ruby bin/jekyll-page "Some Page Title dev" dev
+ruby bin/jekyll-page "Some Page Title post" post
