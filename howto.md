@@ -11,6 +11,8 @@ Start by [creating a new post](http://jekyllrb.com/docs/posts/) one of the categ
 ruby bin/jekyll-page "Some Page Title" ref
 ```
 
+[bruth](http://bruth.github.io/jekyll-docs-template
+
 #### Don't Forget
 
 - Add your own content to this page (i.e. `index.md`) and change the `title`
