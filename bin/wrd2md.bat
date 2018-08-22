@@ -1,5 +1,14 @@
-REM @echo off
-@echo on
+@echo off
+
+if %2.==. GOTO NoRefLink
+
+set "RefLink=--reference-links"
+GOTO RefLink
+
+:NoRefLink
+set RefLink=
+
+:RefLink
 
 IF %1.==. GOTO No1
 
@@ -22,21 +31,31 @@ GOTO End1
 
 :Do1
 ECHO Converting %1 to %1.md 
-pandoc -s %1 --wrap=none --reference-links -t markdown -o %1.md
+pandoc -s %1 --wrap=none  %RefLink%  -t markdown -o %1.md
 GOTO End1
 
 :Do2
 ECHO Converting %1.doc to %1.md 
-pandoc -s %1.doc --wrap=none --reference-links -t markdown -o %1.md
+pandoc -s %1.doc --wrap=none %RefLink%  -t markdown -o %1.md
 GOTO End1
 
 :Do3
 ECHO Converting %1.docx to %1.md 
-pandoc -s %1.docx --wrap=none --reference-links -t markdown -o %1.md
+pandoc -s %1.docx --wrap=none %RefLink%  -t markdown -o %1.md
 GOTO End1
 
 :No1
-  ECHO No param 1: Need Word document filename or basename. Can be doc or docx
+ECHO .
+ECHO Word to Markdown
+ECHO -----------------
+ECHO Can be doc or docx Word document
+ECHO .
+ECHO No param 1: Need Word document filename or basename
+ECHO .
+ECHO Uses Pandoc
+ECHO Any second paramater sets Use Ref Links (Place links at bottom)
+ECHO See: https://ronn-bundgaard.dk/blog/convert-docx-to-markdown-with-pandoc/
+
 GOTO End1
 
 
