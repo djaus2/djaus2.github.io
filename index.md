@@ -1,15 +1,12 @@
 ---
 layout: default
-title: "Jekyll Docs Template"
+title: "Djs Software Dox"
 ---
 
-### Get Started
+### Other Blogs
 
-Start by [creating a new post](http://jekyllrb.com/docs/posts/) one of the categories listed in `_config.yml`. It will appear in the navigation on the left once recompiled. Or use the supplied script to make creating pages easier:
+My embedded101.com blog: [Embedded101.com](http://embedded101.com/Blogs/David-Jones) 
 
-```bash
-ruby bin/jekyll-page "Some Page Title" ref
-```
 
 #### Don't Forget
 
