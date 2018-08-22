@@ -11,7 +11,7 @@ Start by [creating a new post](http://jekyllrb.com/docs/posts/) one of the categ
 ruby bin/jekyll-page "Some Page Title" ref
 ```
 
-[bruth](http://bruth.github.io/jekyll-docs-template
+[bruth](http://bruth.github.io/jekyll-docs-template)
 
 #### Don't Forget
 
