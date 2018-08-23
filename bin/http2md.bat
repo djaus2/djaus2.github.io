@@ -35,7 +35,8 @@ GOTO End1
 :Do3
 ECHO Converting %1 to %2.md 
 rem pandoc temp.html -o temp.md  %RefLink%
-pandoc -f html -t markdown %1 > temp.md
+pandoc -f html -t markdown %1 > temp1.md
+findstr /V ::: temp1.md >temp.md
 echo --- > %2.md
 echo layout: default >> %2.md
 echo title: "%2" >> %2.md
