@@ -1,3 +1,7 @@
 *.sw?
 _site
 _pages
+/Bak
+/Filter/Filter/bin
+/Filter/Filter/obj
+*.user
