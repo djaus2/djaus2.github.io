@@ -4,6 +4,10 @@ _pages
 /Bak
 /Filter/Filter/bin
 /Filter/Filter/obj
+/Filter/FilterWF/bin
+/Filter/FilterWF/obj
+/bin/filter.exe
+/bin/filterWF.exe
 /.vs
 *.user
 
