@@ -21,9 +21,9 @@ codeurl: 'https://github.com/bruth/jekyll-docs-template'
 sections: [
     ['intro', 'Introduction'],
     ['res', 'Resources'],
-    ['uwp', 'UWP 101'],
-	['xam', 'Xamarin 101'],
-	['xaml', 'Xaml 101'],
+    ['uwp', 'UWP101'],
+	['xam', 'Xamarin101'],
+	['xaml', 'Xaml101'],
     ['doc', 'Documentation'],
     ['tut', 'Tutorial'],
     ['ref', 'Reference'],
