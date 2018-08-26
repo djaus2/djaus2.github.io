@@ -23,7 +23,7 @@ sections: [
     ['res', 'Resources'],
     ['uwp', 'UWP101'],
 	['xam', 'Xamarin101'],
-	['xaml', 'Xaml101'],
+	['xaml', 'Xaml 101'],
     ['doc', 'Documentation'],
     ['tut', 'Tutorial'],
     ['ref', 'Reference'],
