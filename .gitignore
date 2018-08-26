@@ -1,14 +1,13 @@
 *.sw?
 _site
 _pages
-/Bak
+Bak/
 /Filter/Filter/bin
 /Filter/Filter/obj
 /Filter/FilterWF/bin
 /Filter/FilterWF/obj
 /bin/filter.exe
 /bin/filterWF.exe
-/.vs
 *.user
 
 ## Ignore Visual Studio temporary files, build results, and
