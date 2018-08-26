@@ -21,15 +21,13 @@ codeurl: 'https://github.com/bruth/jekyll-docs-template'
 sections: [
     ['intro', 'Introduction'],
     ['res', 'Resources'],
-    ['uwp', 'UWP 101'],
-    ['xam', 'Xamarin 101'],
-    ['xaml', 'Xaml 101'],
+    ['bas', 'Basic 101'],
     ['doc', 'Documentation'],
     ['tut', 'Tutorial'],
     ['ref', 'Reference'],
     ['dev', 'Developers'],
-    ['post', 'Posts']
-    ['xamsample', 'XamlSamples']
+    ['post', 'Posts'],
+    ['xamsample', 'Xaml Samples']
 ]
 
 # Keep as an empty string if served up at the root. If served up at a specific
