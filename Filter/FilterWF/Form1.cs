@@ -13,44 +13,94 @@ namespace FilterWF
 {
     public partial class Form1 : Form
     {
+
+        public string[] Categories = new string[0];
+        string srcFilePath = "";
+
         public Form1()
         {
             InitializeComponent();
+
+
+            tbSrcFilename.Text = Program.srcFilename;
+            tbSrcFolder.Text = Program.srcFolder;
+            tbTopic.Text = Program.topic;
+            tbSubTopic.Text = Program.subTopic;
+            //tbCategory.Text = Program.category;
+            tbStartFilterCSVList.Text = Program.startFilters;
+            tbSkipListLines.Text = Program.skipFilters.Replace(",","\r\n");
+            tbEndFilterCSVList2.Text = Program.endFilters;
+
+            srcFilePath = Program.srcPath;
+
+            Categories = Program.categories.Split(new char[] { ',' });
+
+            CategoriesComboBox.Items.AddRange(Categories);
+            if (Program.category != "")
+            {
+                if (Categories.ToList().Contains(Program.category))
+                    CategoriesComboBox.SelectedItem = Program.category;
+            }
+
         }
 
-        string filename = "";
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
-            filename = "";
-            textBox1.Text = "";
+            
+            //tbSrcFilename.Text = "";
             //textBox2.Text = "";
             OpenFileDialog fdlg = new OpenFileDialog();
             fdlg.Title = "Select Markdown file to filter";
             fdlg.InitialDirectory = Path.Combine(
                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                "");
-            if (textBox2.Text != "")
-                fdlg.InitialDirectory = textBox2.Text;
+            if (tbSrcFolder.Text != "")
+                fdlg.InitialDirectory = tbSrcFolder.Text;
             // fdlg.InitialDirectory = @"c:\";
             fdlg.Filter = "Markdown (*.md)|*.md|Text files (*.txt)|*.txt|All files (*.*)|*.*";
             fdlg.FilterIndex = 1;
             fdlg.RestoreDirectory = true;
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
-                filename = fdlg.FileName;
-                textBox1.Text = Path.GetFileName(filename);
-                textBox2.Text = Path.GetFullPath(filename);
+                srcFilePath = fdlg.FileName;
+                tbSrcFilename.Text = Path.GetFileName(srcFilePath);
+                tbSrcFolder.Text = Path.GetFullPath(srcFilePath);
+
+                //Output("__CLEAR__");
+                //StreamReader sr = File.OpenText(filename);
+                //Output(sr.ReadToEnd());
+                LoadFile();
+            }
+        }
+
+        private void LoadFile()
+        {
+            if (File.Exists(srcFilePath))
+            {
+                tbSrcFilename.Text = Path.GetFileName(srcFilePath);
+                tbSrcFolder.Text = Path.GetFullPath(srcFilePath);
 
                 Output("__CLEAR__");
-                StreamReader sr = File.OpenText(filename);
+                StreamReader sr = File.OpenText(srcFilePath);
                 Output(sr.ReadToEnd());
+            }
+            else
+            {
+                string message =
+                    "File doesn't exist!\r\n" + srcFilePath;
+                const string caption = "Openfile";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Exclamation);
+               
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string[] args = new string[] { textBox4.Text, textBox3.Text, textBox5.Text };
+            string[] args = new string[] { tbSkipListLines.Text, tbStartFilterCSVList.Text, tbEndFilterCSVList2.Text };
             Main(args);
         }
 
@@ -90,12 +140,12 @@ namespace FilterWF
                         // If string starts with @ then use whole argumenet as one (can therefore have a comma)
                         linesToSkipStartingWith = new List<string> { args[0].Substring(1) };
                     }
-                    linesToSkipStartingWith = (args[0].Split(new char[] { ',' })).ToList();
+                    linesToSkipStartingWith = (args[0].Split(new string[] { "\r","\n" }, StringSplitOptions.RemoveEmptyEntries)).ToList();
                 }
             }
 
-
-
+            //Skip lines:
+            //Starting with is default. + prefix = starting with  - prefix is contains
             linesToSkipContaining = (from f in linesToSkipStartingWith where f[0] == '-' select f).ToList();
             linesToSkipStartingWith = (from f in linesToSkipStartingWith where f[0] != '-' select f).ToList();
             for (int i = 0; i < linesToSkipStartingWith.Count(); i++)
@@ -131,15 +181,15 @@ namespace FilterWF
             }
 
 
-            if (File.Exists(filename))// only executes if the file at pathtofile exists//you need to add the using System.IO reference at the top of te code to use this
+            if (File.Exists(srcFilePath))// only executes if the file at pathtofile exists//you need to add the using System.IO reference at the top of te code to use this
             {
                 int skipstart = 0;
                 bool stop = false;
-                if (!int.TryParse(textBox6.Text, out skipstart))
+                if (!int.TryParse(tbNoLinesToSkipAtStart.Text, out skipstart))
                 {
                     skipstart = 0;
                 }
-                StreamReader sr = File.OpenText(filename);
+                StreamReader sr = File.OpenText(srcFilePath);
                 string line;
                 while (((line = sr.ReadLine()) != null) && (!stop))
                 {
@@ -210,6 +260,14 @@ namespace FilterWF
                                         break;
                                     }
                                 }
+                                else if ((f[0] == '+') && subf != "")
+                                {
+                                    if (line.ToLower().Contains(subf.ToLower()))
+                                    {
+                                        stop = true;
+                                        break;
+                                    }
+                                }
 
                             }
 
@@ -230,9 +288,9 @@ namespace FilterWF
         private void Output(string line)
         {
             if (line == "__CLEAR__")
-                textBox7.Text = "";
+                tbOutput.Text = "";
             else
-                textBox7.Text += "\r\n" + line;
+                tbOutput.Text += "\r\n" + line;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -243,8 +301,8 @@ namespace FilterWF
             fdlg.InitialDirectory = Path.Combine(
                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                "");
-            if (textBox2.Text != "")
-                fdlg.InitialDirectory = textBox2.Text;
+            if (tbSrcFolder.Text != "")
+                fdlg.InitialDirectory = tbSrcFolder.Text;
             
             fdlg.Filter = "Markdown (*.md)|*.md|Text files (*.txt)|*.txt|All files (*.*)|*.*";
             fdlg.FilterIndex = 1;
@@ -262,10 +320,39 @@ namespace FilterWF
                 //                                 MessageBoxIcon.Exclamation);
                 //    return;
                 //}
+                string header = "---\r\n";
+                if (tbTopic.Text != "")
+                    header +=  tbTopic.Text + "\r\n";
+                if (tbSubTopic.Text != "")
+                    header += tbSubTopic.Text + "\r\n";
+                if (CategoriesComboBox.SelectedIndex!= -1)
+                    header += CategoriesComboBox.SelectedItem + "\r\n";
+                header += "---\r\n\r\n";
 
-                File.WriteAllText(fdlg.FileName, textBox7.Text);                
+
+
+
+
+                File.WriteAllText(fdlg.FileName,header);
+                File.AppendAllText( fdlg.FileName, tbOutput.Text);                
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form2 fm2 = new Form2();
+            fm2.ShowDialog();
+        }
+
+
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            srcFilePath = Path.Combine(tbSrcFolder.Text, tbSrcFilename.Text);
+            LoadFile();
+        }
+
+
     }
 
 }
