@@ -49,9 +49,14 @@ namespace FilterWF
                         break;
                     case "path":
                     case "-p":
-                        srcPath = args[i + 1];
-                        srcFilename = Path.GetFileName(srcPath);
-                        srcFolder = Path.GetFullPath(srcPath);
+                        string pth  = args[i + 1];
+                        //MessageBox.Show(pth);
+                        srcFilename = Path.GetFileName(pth);
+                        //MessageBox.Show(srcFilename);
+                        srcPath = Path.GetFullPath(srcFilename);
+                        //MessageBox.Show(srcPath);
+                        srcFolder = srcPath.Replace("\\"+ srcFilename,"");
+                        //MessageBox.Show(srcFolder);
                         break;
                     case "topic":
                     case "-t":
