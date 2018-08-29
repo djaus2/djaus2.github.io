@@ -8,8 +8,25 @@ namespace Filter
 {
     class Program
     {
+        //static FilterCls.filterMD.OutputMsg outMsg;
+
+        //public static void Output (string msg)
+        //{
+        //    if (msg == "__CLEAR__")
+        //        Console.WriteLine("");
+        //    else
+        //        Console.WriteLine(msg);
+        //}
         static void Main(string[] args)
         {
+            
+
+            //outMsg = Output;
+
+            FilterCls.filterMD.ExecFilters(args, null ,0);
+
+            return;
+
             List<string> lineToStartAfter = new List<string>();
             bool started = true;
             List<string> linesToSkipStartingWith = new List<string>();

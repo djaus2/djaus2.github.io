@@ -100,8 +100,18 @@ namespace FilterWF
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string[] args = new string[] { tbSkipListLines.Text, tbStartFilterCSVList.Text, tbEndFilterCSVList2.Text };
-            Main(args);
+            string[] args = new string[] {  tbSkipListLines.Text, tbStartFilterCSVList.Text, tbEndFilterCSVList2.Text };
+            //Main(args);
+            int skipstart = 0;
+            if (!int.TryParse(tbNoLinesToSkipAtStart.Text, out skipstart))
+            {
+                skipstart = 0;
+            }
+
+            //FilterCls.filterMD.OutputMsg outMsg = Output;
+            string[] Lines = tbOutput.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            tbOutput.Text = "";
+            FilterCls.filterMD.ExecFilters(args, Output, skipstart,Lines);
         }
 
         private void Main(string[] args)

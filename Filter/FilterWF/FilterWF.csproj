@@ -99,6 +99,12 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FilterCls\FilterCls.csproj">
+      <Project>{9c22e0d9-0d79-44d3-9c74-05c38bde546f}</Project>
+      <Name>FilterCls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetPath)  $(SolutionDir)\..\bin</PostBuildEvent>
