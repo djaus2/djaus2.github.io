@@ -357,7 +357,7 @@ namespace FilterWF
                 if (abbrev.Count() == 1)
                     cat = abbrev.First().Abbrev;
             }
-            string filenameMd = DateTime.Now.ToString("yyy-mm-dd") + "-" + tbTopic.Text.Replace(" ","-") + "-" + cat;
+            string filenameMd = DateTime.UtcNow.ToString("yyyy-MM-dd") + "-" + tbTopic.Text.Replace(" ","-") + "-" + cat;
             SaveFileDialog fdlg = new SaveFileDialog();
             fdlg.Title = "Save Markdown file As";
             var x = Environment.CurrentDirectory;
@@ -397,7 +397,7 @@ namespace FilterWF
                         header += "subtitle: " + tbSubTopic.Text + "\r\n";
                     if (CategoriesComboBox.SelectedIndex != -1)
                         header += "category: " + cat + "\r\n";
-                    header += "date: " + DateTime.Now.ToString("yyy-mm-dd hh:mm:ss") + "\r\n";
+                    header += "date: " + DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n";
                     header += "---\r\n\r\n";
                     File.WriteAllText(fdlg.FileName, header);
                 }
