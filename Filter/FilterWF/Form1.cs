@@ -350,7 +350,14 @@ namespace FilterWF
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string filenameMd = DateTime.Now.ToString("yyy-mm-dd").Replace("Z","") + "-" + tbTopic.Text + "-" + CategoriesComboBox.SelectedItem;
+            string cat = "post";
+            if (CategoriesComboBox.SelectedIndex != -1)
+            {
+                var abbrev = from n in Categorys where n.Name == (string)CategoriesComboBox.SelectedItem select n;
+                if (abbrev.Count() == 1)
+                    cat = abbrev.First().Abbrev;
+            }
+            string filenameMd = DateTime.Now.ToString("yyy-mm-dd") + "-" + tbTopic.Text.Replace(" ","-") + "-" + cat;
             SaveFileDialog fdlg = new SaveFileDialog();
             fdlg.Title = "Save Markdown file As";
             var x = Environment.CurrentDirectory;
@@ -389,8 +396,8 @@ namespace FilterWF
                     if (tbSubTopic.Text != "")
                         header += "subtitle: " + tbSubTopic.Text + "\r\n";
                     if (CategoriesComboBox.SelectedIndex != -1)
-                        header += "category: " + CategoriesComboBox.SelectedItem + "\r\n";
-                    header += "date: " + DateTime.Now.ToString("u") + "\r\n";
+                        header += "category: " + cat + "\r\n";
+                    header += "date: " + DateTime.Now.ToString("yyy-mm-dd hh:mm:ss") + "\r\n";
                     header += "---\r\n\r\n";
                     File.WriteAllText(fdlg.FileName, header);
                 }
