@@ -51,6 +51,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.CategoriesComboBox = new System.Windows.Forms.ComboBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.cbAddHeader = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -264,11 +265,11 @@
             this.label9.TabIndex = 23;
             this.label9.Text = "Category";
             // 
-            // comboBox1
+            // CategoriesComboBox
             // 
             this.CategoriesComboBox.FormattingEnabled = true;
             this.CategoriesComboBox.Location = new System.Drawing.Point(724, 951);
-            this.CategoriesComboBox.Name = "comboBox1";
+            this.CategoriesComboBox.Name = "CategoriesComboBox";
             this.CategoriesComboBox.Size = new System.Drawing.Size(743, 39);
             this.CategoriesComboBox.TabIndex = 24;
             // 
@@ -283,11 +284,24 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // checkBox1
+            // 
+            this.cbAddHeader.AutoSize = true;
+            this.cbAddHeader.Checked = true;
+            this.cbAddHeader.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAddHeader.Location = new System.Drawing.Point(1523, 880);
+            this.cbAddHeader.Name = "checkBox1";
+            this.cbAddHeader.Size = new System.Drawing.Size(258, 36);
+            this.cbAddHeader.TabIndex = 26;
+            this.cbAddHeader.Text = "Add Header Info";
+            this.cbAddHeader.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2133, 1300);
+            this.Controls.Add(this.cbAddHeader);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.CategoriesComboBox);
             this.Controls.Add(this.label9);
@@ -345,6 +359,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox CategoriesComboBox;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox cbAddHeader;
     }
 }
 

@@ -8,19 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YamlDotNet.RepresentationModel;
 
 namespace FilterWF
 {
+
     public partial class Form1 : Form
     {
 
         public string[] Categories = new string[0];
+        public List<Categoryx> Categorys = new List<Categoryx>();
         string srcFilePath = "";
+        string githubioroot = "";
 
         public Form1()
         {
             InitializeComponent();
-
 
             tbSrcFilename.Text = Program.srcFilename;
             tbSrcFolder.Text = Program.srcFolder;
@@ -33,13 +36,55 @@ namespace FilterWF
 
             srcFilePath = Program.srcPath;
 
-            Categories = Program.categories.Split(new char[] { ',' });
+            githubioroot = Environment.GetEnvironmentVariable("GITHUBIOROOT");
+            string ymlPath = Path.Combine(githubioroot,"_config.yml");
 
-            CategoriesComboBox.Items.AddRange(Categories);
-            if (Program.category != "")
+            if (File.Exists(ymlPath))
             {
-                if (Categories.ToList().Contains(Program.category))
-                    CategoriesComboBox.SelectedItem = Program.category;
+                using (var reader = new StreamReader(ymlPath))
+                {
+                    // Load the stream
+                    var yaml2 = new YamlStream();
+                    yaml2.Load(reader);
+
+                    // Examine the stream
+                    YamlMappingNode rootNode =
+                        (YamlMappingNode)yaml2.Documents[0].RootNode;
+                    YamlDotNet.RepresentationModel.YamlNode sections = rootNode["sections"];
+
+
+                    for (int i = 0; i < sections.AllNodes.Count(); i++)
+                    {
+                        try
+                        {
+                            YamlNode section = sections.AllNodes.ToList()[i];
+
+                            string Name = (string)section[0];
+                            string Abbrev = (string)section[1];
+                            Categorys.Add(new Categoryx(Abbrev, Name));
+                        }
+                        catch (Exception)
+                        {
+                            //First section item will catch here as its a list of all nodes.
+                            //Just ignore. Could iterate from i=1
+                            //Why does this feel like deja vu?
+                        }
+                    }
+
+                }
+                var cats = from c in Categorys select c.Name;
+                CategoriesComboBox.Items.AddRange(cats.ToArray());
+            }
+            else
+            {
+                Categories = Program.categories.Split(new char[] { ',' });
+
+                CategoriesComboBox.Items.AddRange(Categories);
+                if (Program.category != "")
+                {
+                    if (Categories.ToList().Contains(Program.category))
+                        CategoriesComboBox.SelectedItem = Program.category;
+                }
             }
 
         }
@@ -66,7 +111,7 @@ namespace FilterWF
             {
                 srcFilePath = fdlg.FileName;
                 tbSrcFilename.Text = Path.GetFileName(srcFilePath);
-                tbSrcFolder.Text = Path.GetFullPath(srcFilePath);
+                tbSrcFolder.Text = Path.GetFullPath(srcFilePath).Replace(tbSrcFilename.Text,"");
 
                 //Output("__CLEAR__");
                 //StreamReader sr = File.OpenText(filename);
@@ -80,7 +125,7 @@ namespace FilterWF
             if (File.Exists(srcFilePath))
             {
                 tbSrcFilename.Text = Path.GetFileName(srcFilePath);
-                tbSrcFolder.Text = Path.GetFullPath(srcFilePath);
+                tbSrcFolder.Text = Path.GetFullPath(srcFilePath).Replace(tbSrcFilename.Text, ""); ;
 
                 Output("__CLEAR__");
                 StreamReader sr = File.OpenText(srcFilePath);
@@ -305,18 +350,22 @@ namespace FilterWF
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            string filenameMd = DateTime.Now.ToString("yyy-mm-dd").Replace("Z","") + "-" + tbTopic.Text + "-" + CategoriesComboBox.SelectedItem;
             SaveFileDialog fdlg = new SaveFileDialog();
             fdlg.Title = "Save Markdown file As";
+            var x = Environment.CurrentDirectory;
             fdlg.InitialDirectory = Path.Combine(
                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                "");
             if (tbSrcFolder.Text != "")
                 fdlg.InitialDirectory = tbSrcFolder.Text;
-            
+            if (githubioroot != "")
+                fdlg.InitialDirectory = Path.Combine(githubioroot, "_" + CategoriesComboBox.SelectedItem);
+
             fdlg.Filter = "Markdown (*.md)|*.md|Text files (*.txt)|*.txt|All files (*.*)|*.*";
             fdlg.FilterIndex = 1;
             fdlg.RestoreDirectory = true;
+            fdlg.FileName = filenameMd + ".md";
             if (fdlg.ShowDialog() == DialogResult.OK)
             {
                 //if (File.Exists(fdlg.FileName))
@@ -330,20 +379,21 @@ namespace FilterWF
                 //                                 MessageBoxIcon.Exclamation);
                 //    return;
                 //}
-                string header = "---\r\n";
-                if (tbTopic.Text != "")
-                    header +=  tbTopic.Text + "\r\n";
-                if (tbSubTopic.Text != "")
-                    header += tbSubTopic.Text + "\r\n";
-                if (CategoriesComboBox.SelectedIndex!= -1)
-                    header += CategoriesComboBox.SelectedItem + "\r\n";
-                header += "---\r\n\r\n";
-
-
-
-
-
-                File.WriteAllText(fdlg.FileName,header);
+                string header = "";
+                if (cbAddHeader.Checked == true)
+                {
+                    header = "---\r\n";
+                    header += "layout: page\r\n";
+                    if (tbTopic.Text != "")
+                        header += "title: " + tbTopic.Text + "\r\n";
+                    if (tbSubTopic.Text != "")
+                        header += "subtitle: " + tbSubTopic.Text + "\r\n";
+                    if (CategoriesComboBox.SelectedIndex != -1)
+                        header += "category: " + CategoriesComboBox.SelectedItem + "\r\n";
+                    header += "date: " + DateTime.Now.ToString("u") + "\r\n";
+                    header += "---\r\n\r\n";
+                    File.WriteAllText(fdlg.FileName, header);
+                }
                 File.AppendAllText( fdlg.FileName, tbOutput.Text);                
             }
         }
@@ -363,6 +413,18 @@ namespace FilterWF
         }
 
 
+    }
+
+    public class Categoryx
+    {
+        public string Name { get; set; } = "";
+        public string Abbrev { get; set; } = "";
+
+        public Categoryx(string name, string abbrev)
+        {
+            Name = name;
+            Abbrev = abbrev;
+        }
     }
 
 }
