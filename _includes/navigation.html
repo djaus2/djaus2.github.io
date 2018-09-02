@@ -9,9 +9,12 @@
         {% for page in site.categories[attr] %}
             {% if forloop.first %}
                 <li> <button onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</button></li>
+                <li><ul id="{{attr}}" class="hidden">
+
             {% endif %}
-            <li class=attr style="display: none;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+            <li  data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
+                    </ul></li>
     {% endfor %}
 <!-- List additional links. It is recommended to add a divider
     e.g. <li class="divider"></li> first to break up the content. -->
@@ -19,7 +22,9 @@
 <script>
     function myFunction(parent) {
         alert(parent);
-        //attr.
-        //document.getElementById(parent).style.display = "none";
+        if (document.getElementById(parent).style.display !== "none")
+            document.getElementById(parent).style.display = "none";
+        else
+            document.getElementById(parent).style.display = "viz"
     }
 </script>

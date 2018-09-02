@@ -45,10 +45,20 @@ code {
     margin-top: 0;
 }
 
+#hidden {
+    display: none
+}
+
+#viz {
+    display: reset
+}
+
 
 #navigation {
     font-size: 0.9em;
 }
+
+#
 
 #navigation li a {
     padding-left: 10px;
