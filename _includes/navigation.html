@@ -3,20 +3,23 @@
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
         {% assign attr = section[0] %}
+        
         {% assign label = section[1] %}
 
         {% for page in site.categories[attr] %}
             {% if forloop.first %}
-                <li> <button onclick="myFunction()" class="nav-header">{{ label }}</button></li>
+                <li> <button onclick="myFunction(attr)" class="nav-header">{{ label }}</button></li>
             {% endif %}
-            <li style="display: none;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+            <li class=attr style="display: none;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
     {% endfor %}
 <!-- List additional links. It is recommended to add a divider
     e.g. <li class="divider"></li> first to break up the content. -->
 </ul>
 <script>
-    function myFunction() {
-        alert("I am an alert box!");
+    function myFunction(parent) {
+        alert(parent);
+        //attr.
+        //document.getElementById(parent).style.display = "none";
     }
 </script>
