@@ -2,27 +2,31 @@
     <li><i class="glyphicon glyphicon-cog" style="font-size: 2.5em;" onclick="myFunction()"></i></li>
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
-        {% assign attr = section[0] %}
-        
-        {% assign label = section[1] %}
+    {% assign attr = section[0] %}
+    {% assign attrId = "qaz" + section[0] %}
 
-        {% for page in site.categories[attr] %}
-            {% if forloop.first %}
-                <li> <button  onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</button></li>
-            {% endif %}
-            <li id="qaz" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-        {% endfor %}
-                  
+    {% assign label = section[1] %}
+
+    {% for page in site.categories[attr] %}
+    {% if forloop.first %}
+    <li> <button onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</button></li>
+    <li>
+    <ul id="{{attr}}">
+    {% endif %}
+    <li  data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
     {% endfor %}
-<!-- List additional links. It is recommended to add a divider
-    e.g. <li class="divider"></li> first to break up the content. -->
+        </ul></li>
+
+    {% endfor %}
+    <!-- List additional links. It is recommended to add a divider
+        e.g. <li class="divider"></li> first to break up the content. -->
 </ul>
 <script>
     function myFunction(parent) {
         alert(parent);
-        if (document.getElementById("qaz").style.display !== "none")
-            document.getElementById("qaz").style.display = "block";
+        if (document.getElementById(parent).style.display !== "none")
+            document.getElementById(parent).style.display = "block";
         else
-            document.getElementById("qaz").style.display = "none";
+            document.getElementById(parent).style.display = "none";
     }
 </script>
