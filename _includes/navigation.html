@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked" style="list-style: none;">
     <li><i class="glyphicon glyphicon-cog" style="font-size: 2.5em;" onclick="myFunction()"></i></li>
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
@@ -11,9 +11,9 @@
     {% if forloop.first %}
     <li> <button onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</button></li>
     <li>
-    <ul id="{{attr}}">
+    <ul id="{{attr}}" >
     {% endif %}
-    <li  data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+    <li style="display: none;"  data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
     {% endfor %}
         </ul></li>
 
