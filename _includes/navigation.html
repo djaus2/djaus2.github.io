@@ -8,7 +8,7 @@
 
         {% for page in site.categories[attr] %}
             {% if forloop.first %}
-                <li> <button onclick="myFunction({{attr}})" class="nav-header">{{ label }}</button></li>
+                <li> <button onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</button></li>
             {% endif %}
             <li class=attr style="display: none;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
