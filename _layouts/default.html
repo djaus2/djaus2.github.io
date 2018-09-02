@@ -22,10 +22,11 @@
             </div>
 
             <div class="row">
-                <i class="glyphicon glyphicon-cloud"></i>
+                
                 {% assign post_count = site.posts|size %}
                 {% if site.navigation != 0 and site.navigation == 1 or post_count > 0 %}
-                <div id="navigation" class="col-sm-2" visibility: hidden>
+                <div id="navigation" class="col-sm-2">
+                    <i class="glyphicon glyphicon-cloud" horizontal-align: left></i>
                     {% include navigation.html %}
                 </div>
 
