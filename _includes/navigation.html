@@ -8,31 +8,32 @@
     }
 </style>
 <div id="navId">
-<ul  class="nav nav-pills nav-stacked nobull" >
+    <ul class="nav nav-pills nav-stacked">
 
-    <li><a href="{{ site.baseurl }}/">Home</a></li>
-    {% for section in site.sections %}
-    {% assign attr = section[0] %}
+        <li><a href="{{ site.baseurl }}/">Home</a></li>
+        {% for section in site.sections %}
+        {% assign attr = section[0] %}
 
-    {% assign label = section[1] %}
+        {% assign label = section[1] %}
 
-    {% for page in site.categories[attr] %}
-    {% if forloop.first %}
-    <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
-    <li>
-        <ul id="{{attr}}">
-            {% endif %}
-            <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </li>
+        {% for page in site.categories[attr] %}
+        {% if forloop.first %}
+        <li class="nav-header">{{ label }}</li>
+        <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
+        <li>
+            <ul id="{{attr}}">
+                {% endif %}
+                <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
 
-    {% endfor %}
+        {% endfor %}
 
 
-    <!-- List additional links. It is recommended to add a divider
+        <!-- List additional links. It is recommended to add a divider
         e.g. <li class="divider"></li> first to break up the content. -->
-</ul>
+    </ul>
 </div>
 
     {% for section in site.sections %}
