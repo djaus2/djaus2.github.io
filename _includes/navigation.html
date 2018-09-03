@@ -15,9 +15,9 @@
                 {% if forloop.first %}
                 <li class="nav-header" onclick="myFunction('{{attr}}')">{{ label }}</li>
                     <li>
-                        <ul id="{{attr}}" class="nav nav-pills nav-stacked">
+                        <ul id="{{attr}}" class="nav nav-pills nav-stacked"  style="display: block;">
                 {% endif %}
-                <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+                <li  data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
             {% endfor %}
             </ul>
             </li>
