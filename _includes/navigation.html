@@ -22,7 +22,7 @@
         {% assign label = section[1] %}
 
 
-
+        {% site.categories[attr] %}
         {% for page in site.categories[attr] %}
 
         {% if forloop.first %}
@@ -53,7 +53,7 @@
 
         <!-- List additional links. It is recommended to add a divider
 
-            e.g. <li class="divider"></li> first to break up the content. -->
+        e.g. <li class="divider"></li> first to break up the content. -->
 
     </ul>
 
