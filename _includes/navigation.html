@@ -2,11 +2,7 @@
     <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
        onclick="myFunction('navId')"></i>
 </p>
-<style type="text/css">
-    .nobull {
-        list-style-type: none;
-    }
-</style>
+
 <div id="navId">
     <ul class="nav nav-pills nav-stacked">
         <li><a href="{{ site.baseurl }}/">Home</a></li>
@@ -17,11 +13,10 @@
         {% for page in site.categories[attr] %}
         {% if forloop.first %}
         <li class="nav-header">{{ label }}</li>
-        <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
         <li>
             <ul id="{{attr}}">
                 {% endif %}
-                <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+                <li data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
                 {% endfor %}
             </ul>
         </li>
@@ -32,30 +27,21 @@
         <!-- List additional links. It is recommended to add a divider
         e.g. <li class="divider"></li> first to break up the content. -->
     </ul>
+</div>
+<div>
     <ul class="nav nav-pills nav-stacked">
 
         <li><a href="{{ site.baseurl }}/">Home</a></li>
-
         {% for section in site.sections %}
-
         {% assign attr = section[0] %}
-
         {% assign label = section[1] %}
 
-
-
         {% for page in site.categories[attr] %}
-
         {% if forloop.first %}
-
         <li class="nav-header">{{ label }}</li>
-
         {% endif %}
-
         <li data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-
         {% endfor %}
-
         {% endfor %}
 
         <!-- List additional links. It is recommended to add a divider
