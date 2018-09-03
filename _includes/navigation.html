@@ -25,7 +25,6 @@
        
         {% for page in site.categories[attr] %}
 
-        {% if page %}
 
         {% if forloop.first %}
 
@@ -33,7 +32,7 @@
 
         <li>
 
-            <ul id="{{attr}}"> 
+            <ul id="{{attr}}" class="nav nav-pills nav-stacked"> 
 
                 {% endif %}
 
@@ -43,8 +42,7 @@
 
             </ul>
 
-        </li>
-        {% endif %}       
+        </li>     
 
 
         {% endfor %}
