@@ -20,8 +20,6 @@ codeurl: 'https://github.com/bruth/jekyll-docs-template'
 # Default categories (in order) to appear in the navigation
 sections: [
     ['intro', 'Introduction'],
-    ['res', 'Resources'],
-    ['uwp', 'UWP101'],
 	['xam', 'Xamarin101'],
 	['xaml', 'Xaml 101'],
     ['doc', 'Documentation'],
