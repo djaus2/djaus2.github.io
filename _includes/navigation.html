@@ -14,7 +14,7 @@
         {% if forloop.first %}
         <li class="nav-header">{{ label }}</li>
         <li>
-            <ul id="{{attr}}">
+            <ul id="{{attr}}" class="nav nav-pills nav-stacked">
                 {% endif %}
                 <li data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
                 {% endfor %}
@@ -39,9 +39,8 @@
         {% for page1 in site.categories[attr1] %}
         {% if forloop.first %}
         <li class="nav-header" onclick="myFunction('{{attr1}}')">{{ label1 }}</li>
-        {% endif %}
         <li>
-            <ul id="{{attr1}}">
+            <ul id="{{attr1}}" class="nav nav-pills nav-stacked">
                 {% endif %}
                 <li data-order="{{ page1.order }}"><a href="{{ site.baseurl }}{{ page1.url }}">{{ page1.title }}</a></li>
                 {% endfor %}
