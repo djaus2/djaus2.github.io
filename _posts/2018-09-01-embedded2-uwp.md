@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Embedded2"
-category: post
+category: uwp
 date: 2018-09-01 19:13:29
 ---
 
