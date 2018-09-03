@@ -1,6 +1,8 @@
 <ul class="nav nav-pills nav-stacked" style="list-style-type: none;">
-    <li><i class="glyphicon glyphicon-cog" style="font-size: 2.5em;" 
-           onclick="myFunction2('{{site.sections}}')"></i></li>
+    <li>
+        <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
+           onclick="myFunction2('{{site.sections}}')"></i>
+    </li>
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
     {% assign attr = section[0] %}
@@ -11,16 +13,29 @@
     {% if forloop.first %}
     <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
     <li>
-    <ul id="{{attr}}" >
-    {% endif %}
-    <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-    {% endfor %}
-        </ul></li>
+        <ul id="{{attr}}">
+            {% endif %}
+            <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
 
     {% endfor %}
+
+
     <!-- List additional links. It is recommended to add a divider
         e.g. <li class="divider"></li> first to break up the content. -->
 </ul>
+
+    {% for section in site.sections %}
+    {% assign attr2 = section[0] %}
+
+    {% assign label2 = section[1] %}
+<script>
+    document.getElementById('{{ attr2 }}').style.display = "none";
+</script>
+    {% endfor %}
+
 <script>
     function myFunction(parent) {
         //alert(parent);
