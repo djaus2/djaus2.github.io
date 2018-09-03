@@ -1,4 +1,4 @@
-<p>
+<p id="glymphId">
     <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
        onclick="myFunction('navId')"></i>
 </p>
@@ -12,7 +12,7 @@
 
         {% for page in site.categories[attr] %}
         {% if forloop.first %}
-        <li class="nav-header">{{ label }}</li>
+        <li class="nav-header" onclick="myFunction('{{attr}}')">{{ label }}</li>
         <li>
             <ul id="{{attr}}" class="nav nav-pills nav-stacked">
                 {% endif %}
@@ -23,36 +23,9 @@
        
         {% endfor %}
 
-
-        <!-- List additional links. It is recommended to add a divider
-    e.g. <li class="divider"></li> first to break up the content. -->
     </ul>
 </div>
-<div>
-    <ul class="nav nav-pills nav-stacked">
 
-        <li><a href="{{ site.baseurl }}/">Home1</a></li>
-        {% for section1 in site.sections %}
-        {% assign attr1 = section1[0] %}
-        {% assign label1 = section1[1] %}
-
-        {% for page1 in site.categories[attr1] %}
-        {% if forloop.first %}
-        <li class="nav-header" onclick="myFunction('{{attr1}}')">{{ label1 }}</li>
-        <li>
-            <ul id="{{attr1}}" class="nav nav-pills nav-stacked">
-                {% endif %}
-                <li data-order="{{ page1.order }}"><a href="{{ site.baseurl }}{{ page1.url }}">{{ page1.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </li>
-        
-        
-        {% endfor %}
-
-    </ul>
-
-</div>
 
     {% for section3 in site.sections %}
     {% assign attr3 = section3[0] %}
@@ -66,6 +39,8 @@
 <script>
     if (screen.width <= 480) 
         document.getElementById('navId').style.display = "none";
+    else
+        document.getElementById('glymphId').style.display = "none";
 </script>
 
 <script>
