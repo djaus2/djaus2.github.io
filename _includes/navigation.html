@@ -32,7 +32,10 @@
     function myFunction2(parent) {
         alert(parent);
         for (x in parent)
-            alert(person[x]);
+            alert(parent[x]);
+        alert('More');
+        for (x in parent)
+            alert(parent[x][0]);
     }
 
 
