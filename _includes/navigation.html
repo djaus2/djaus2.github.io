@@ -20,7 +20,7 @@
                 {% endfor %}
             </ul>
         </li>
-       
+
         {% endfor %}
 
     </ul>
@@ -37,18 +37,17 @@
     {% endfor %}
 
 <script>
-    if (screen.width <= 480) 
+    if (screen.width <= 480)
         document.getElementById('navId').style.display = "none";
     else
         document.getElementById('glymphId').style.display = "none";
 </script>
 
+{% assign LAST = "first" %}
 <script>
-    var last = 'first';
-    alert(last);
     function myFunction(parent) {
-        //alert(last);
-   
+        var last = '{{ LAST }';
+        alert(last);
         if (last !== 'first')
             document.getElementById(last).style.display = "none";
 
