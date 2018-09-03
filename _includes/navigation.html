@@ -1,8 +1,9 @@
-<ul class="nav nav-pills nav-stacked" style="list-style-type: none;">
-    <li>
-        <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
-           onclick="myFunction2('{{site.sections}}')"></i>
-    </li>
+<p>
+    <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
+       onclick="myFunction('navId')"></i>
+</p>
+<ul id="navId" class="nav nav-pills nav-stacked" style="list-style-type: none;">
+
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
     {% assign attr = section[0] %}
@@ -44,14 +45,5 @@
         else
             document.getElementById(parent).style.display = "block";
     }
-    function myFunction2(parent) {
-        alert(parent);
-        for (x in parent)
-            alert(parent[x]);
-        alert('More');
-        for (x in parent)
-            alert(parent[x][0]);
-    }
-
 
 </script>
