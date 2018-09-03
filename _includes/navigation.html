@@ -13,7 +13,7 @@
 
     {% for page in site.categories[attr] %}
     {% if forloop.first %}
-    <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
+    <li onclick="myFunction('{{attr}}')">{{ label }}</li>
     <li>
         <ul id="{{attr}}">
             {% endif %}
