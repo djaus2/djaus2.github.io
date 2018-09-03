@@ -5,22 +5,22 @@
 </div>
 
 <div id="navId">
+    <p><a href="{{ site.baseurl }}/">Home</a></p>
     <ul class="nav nav-pills nav-stacked">
-        <li><a href="{{ site.baseurl }}/">Home</a></li>
         {% for section in site.sections %}
-        {% assign attr = section[0] %}
-        {% assign label = section[1] %}
+            {% assign attr = section[0] %}
+            {% assign label = section[1] %}
 
-        {% for page in site.categories[attr] %}
-        {% if forloop.first %}
-        <li class="nav-header" onclick="myFunction('{{attr}}')">{{ label }}</li>
-        <li>
-            <ul id="{{attr}}" class="nav nav-pills nav-stacked">
+            {% for page in site.categories[attr] %}
+                {% if forloop.first %}
+                <li class="nav-header" onclick="myFunction('{{attr}}')">{{ label }}</li>
+                    <li>
+                        <ul id="{{attr}}" class="nav nav-pills nav-stacked">
                 {% endif %}
                 <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-                {% endfor %}
+            {% endfor %}
             </ul>
-        </li>
+            </li>
 
         {% endfor %}
 
@@ -49,7 +49,7 @@
 <script>
     var last = 'first;'
     function myFunction(parent) {
-
+        alert(parnt);
         if (last !== 'first')
             document.getElementById(last).style.display = "none";
 
