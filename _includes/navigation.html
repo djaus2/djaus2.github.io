@@ -17,11 +17,10 @@
             <ul id="{{attr}}">
                 {% endif %}
                 <li data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-                {% if forloop.last %}
+                {% endfor %}
             </ul>
-            {% if forloop.last %}
         </li>
-        {% endfor %}
+       
         {% endfor %}
 
 
@@ -32,7 +31,7 @@
 <div>
     <ul class="nav nav-pills nav-stacked">
 
-        <li><a href="{{ site.baseurl }}/">Home</a></li>
+        <li><a href="{{ site.baseurl }}/">Home1</a></li>
         {% for section1 in site.sections %}
         {% assign attr1 = section1[0] %}
         {% assign label1 = section1[1] %}
@@ -49,12 +48,12 @@
 
 </div>
 
-    {% for section in site.sections %}
-    {% assign attr2 = section[0] %}
+    {% for section3 in site.sections %}
+    {% assign attr3 = section3[0] %}
 
-    {% assign label2 = section[1] %}
+    {% assign label3 = section3[1] %}
 <script>
-    document.getElementById('{{ attr2 }}').style.display = "none";
+    document.getElementById('{{ attr3 }}').style.display = "none";
 </script>
     {% endfor %}
 
@@ -64,10 +63,11 @@
 </script>
 
 <script>
-    var last = null;
+    var last = 'first';
+    alert(last);
     function myFunction(parent) {
         //alert(parent);
-        if (last !== null)
+        if (last !== 'first')
             document.getElementById(last).style.display = "none";
 
         if (document.getElementById(parent).style.display !== "none")
