@@ -2,8 +2,13 @@
     <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
        onclick="myFunction('navId')"></i>
 </p>
+<style type="text/css">
+    .nobull {
+        list-style-type: none;
+    }
+</style>
 <div id="navId">
-<ul  class="nav nav-pills nav-stacked" >
+<ul  class="nav nav-pills nav-stacked nobull" >
 
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
@@ -13,7 +18,7 @@
 
     {% for page in site.categories[attr] %}
     {% if forloop.first %}
-    <li onclick="myFunction('{{attr}}')">{{ label }}</li>
+    <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
     <li>
         <ul id="{{attr}}">
             {% endif %}
@@ -45,8 +50,12 @@
 </script>
 
 <script>
+    var last = null;
     function myFunction(parent) {
         //alert(parent);
+        if (last !== null)
+            document.getElementById(last).style.display = "none";
+
         if (document.getElementById(parent).style.display !== "none")
             document.getElementById(parent).style.display = "none";
         else
