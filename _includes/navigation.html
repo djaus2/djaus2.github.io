@@ -40,8 +40,15 @@
         {% if forloop.first %}
         <li class="nav-header" onclick="myFunction('{{attr1}}')">{{ label1 }}</li>
         {% endif %}
-        <li data-order="{{ page1.order }}"><a href="{{ site.baseurl }}{{ page1.url }}">{{ page1.title }}</a></li>
-        {% endfor %}
+        <li>
+            <ul id="{{attr1}}">
+                {% endif %}
+                <li data-order="{{ page1.order }}"><a href="{{ site.baseurl }}{{ page1.url }}">{{ page1.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        
+        
         {% endfor %}
 
     </ul>
