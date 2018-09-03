@@ -38,7 +38,7 @@
 
         {% for page1 in site.categories[attr1] %}
         {% if forloop.first %}
-        <li class="nav-header">{{ label1 }}</li>
+        <li class="nav-header" onclick="myFunction('{{attr1}}')">{{ label1 }}</li>
         {% endif %}
         <li data-order="{{ page1.order }}"><a href="{{ site.baseurl }}{{ page1.url }}">{{ page1.title }}</a></li>
         {% endfor %}
@@ -66,14 +66,15 @@
     var last = 'first';
     alert(last);
     function myFunction(parent) {
-        //alert(parent);
-        if (last !== 'first')
+        alert(parent);
+        return;
+        /*if (last !== 'first')
             document.getElementById(last).style.display = "none";
 
         if (document.getElementById(parent).style.display !== "none")
             document.getElementById(parent).style.display = "none";
         else
-            document.getElementById(parent).style.display = "block";
+            document.getElementById(parent).style.display = "block";*/
     }
 
 </script>
