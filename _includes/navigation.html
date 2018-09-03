@@ -22,8 +22,10 @@
         {% assign label = section[1] %}
 
 
-        {% if site.categories[attr]}
+       
         {% for page in site.categories[attr] %}
+
+        {if page}
 
         {% if forloop.first %}
 
@@ -42,7 +44,7 @@
             </ul>
 
         </li>
-        {% endif %}
+        {% endif %}       
 
 
         {% endfor %}
