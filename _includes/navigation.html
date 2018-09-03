@@ -1,4 +1,4 @@
-<div id="glymphId">
+<div id="glymphId" style="display: block;">
     <p>
     <i class="glyphicon glyphicon-menu-hamburger" style="font-size: 2.5em;"
        onclick="myFunction('navId')">Menu</i></p>
@@ -33,6 +33,7 @@
 
     {% assign label3 = section3[1] %}
 <script>
+    alert('{{attr3}}');
     document.getElementById('{{ attr3 }}').style.display = "none";
 </script>
     {% endfor %}
@@ -49,7 +50,7 @@
 <script>
     var last = 'first;'
     function myFunction(parent) {
-        alert(parnt);
+        alert(parent);
         if (last !== 'first')
             document.getElementById(last).style.display = "none";
 
