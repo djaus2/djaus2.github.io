@@ -43,11 +43,12 @@
         document.getElementById('glymphId').style.display = "none";
 </script>
 
-{% assign LAST = "first" %}
+
+
 <script>
+    var last = 'first;'
     function myFunction(parent) {
-        var last = '{{ LAST }';
-        alert(last);
+
         if (last !== 'first')
             document.getElementById(last).style.display = "none";
 
@@ -55,6 +56,8 @@
             document.getElementById(parent).style.display = "none";
         else
             document.getElementById(parent).style.display = "block";
+
+        last = parent;
     }
 
 </script>
