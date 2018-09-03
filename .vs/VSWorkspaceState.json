@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\css",
+    "\\images",
+    "\\_includes",
+    "\\_layouts"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\images\\xamarin101.jpg",
   "PreviewInSolutionExplorer": false
 }
