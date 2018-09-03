@@ -2,7 +2,8 @@
     <i class="glyphicon glyphicon-cog" style="font-size: 2.5em;"
        onclick="myFunction('navId')"></i>
 </p>
-<ul id="navId" class="nav nav-pills nav-stacked" style="list-style-type: none;">
+<div id="navId">
+<ul  class="nav nav-pills nav-stacked" style="list-style-type: none;">
 
     <li><a href="{{ site.baseurl }}/">Home</a></li>
     {% for section in site.sections %}
@@ -27,6 +28,7 @@
     <!-- List additional links. It is recommended to add a divider
         e.g. <li class="divider"></li> first to break up the content. -->
 </ul>
+</div>
 
     {% for section in site.sections %}
     {% assign attr2 = section[0] %}
