@@ -122,6 +122,9 @@
 
             document.getElementById(parent).style.display = "block";
 
+        if (parent === 'navId')
+            return;
+
         try {
             if (last !== "first") {
                 var ull = document.getElementById(last);
