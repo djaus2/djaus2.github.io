@@ -1,147 +1,100 @@
+<!--Hamburger Icon (only shows on mobile). Toggles menu visibility-->
 <div id="glymphId" style="display: block;">
     <p>
         <i class="glyphicon glyphicon-menu-hamburger" style="font-size: 2em;"
-           onclick="myFunction('navId')"></i>
+           onclick="ToggleVisibility('navId')"></i>
     </p>
 </div>
 
 <div id="navId" style="display: block;">
-
     <ul class="nav nav-pills nav-stacked">
-
-
-
         <li><a href="{{ site.baseurl }}/">Home</a></li>
 
         {% for section in site.sections %}
-
         {% assign attr = section[0] %}
-
-
-
-        {% assign label = section[1] %}
-
-
-       
+        {% assign label = section[1] %}    
+        
         {% for page in site.categories[attr] %}
 
-
         {% if forloop.first %}
-
-        <li onclick="myFunction('{{attr}}')" class="nav-header">{{ label }}</li>
-
+        <li onclick="ToggleVisibility('{{attr}}')" class="nav-header">{{ label }}</li>
         <li>
-
+            <!--Place pages for a Category in a self contained unordered list with the Category abbreviation as its id (for toggling).-->
+            <!-- Don't have any Categories with no pages else bullets will show ?? ToDo-->
             <ul id="{{attr}}" class="nav nav-pills nav-stacked"> 
-
                 {% endif %}
 
                 <li style="display: block;" data-order="{{ page.order }}"><a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a></li>
-
                 {% endfor %}
-
             </ul>
-
         </li>     
-
-
         {% endfor %}
 
-
-
-
-
         <!-- List additional links. It is recommended to add a divider
-
     e.g. <li class="divider"></li> first to break up the content. -->
-
     </ul>
-
 </div>
 
 
-
-    {% for section in site.sections %}
-
-    {% assign attr2 = section[0] %}
-
-
-
-    {% assign label2 = section[1] %}
-
+<!-- Set all menu Categories to closed --->
+{% for section in site.sections %}
+{% assign attr2 = section[0] %}
+{% assign label2 = section[1] %}
 <script>
-    //Set all child pages to hidden except for last category if page was navigated to from the menu.
-    var last = "First";
-
-
+    //Set all child pages to hidden except for LastCategory. Happens if page was navigated to from the menu (its menu tree was open).
+    var LastCategory = "First";
     try {
-        if (sessionStorage.last)
-            last = sessionStorage.last;
-            //alert(last);
-        if (last !== "first") {
-
-            if ('{{ attr2 }}' !== last)
+        //Get LastCategory from Browser Session if it exists
+        if (sessionStorage.LastCategory)
+            LastCategory = sessionStorage.LastCategory;
+            //alert(LastCategory); //For debugging
+        if (LastCategory !== "first") {
+            if ('{{ attr2 }}' !== LastCategory)
                 document.getElementById('{{ attr2 }}').style.display = "none";
         }
     } catch (err) {
-        //alert(err.Message);
-        //alert(last);
+        //alert(err.Message); //For debugging
+        //alert(LastCategory); //Ditto
     }
-
 </script>
-
-    {% endfor %}
-
-
+{% endfor %}
 
 <script>
-
+    //For mobile hide the menu. But leave Hmaburger menu showing (that toggles menu visibility).
+    //For desktop hide the Hamburger icon.
     if (screen.width <= 480)
         document.getElementById('navId').style.display = "none";
     else
-        document.getElementById('glymphId').style.display = "block";
+        document.getElementById('glymphId').style.display = "none";
 
-</script>
+    function ToggleVisibility(uIElement) {
 
+        //alert(LastCategory);//For debugging
 
-
-<script>
-
-
-
-    function myFunction(parent) {
-
-        //alert(last);
-
-
-        if (document.getElementById(parent).style.display !== "none")
-
-            document.getElementById(parent).style.display = "none";
-
+        //Toggle UI Element visibility
+        //The UIElement will in the main be the unordered list of pages for a Category
+        //For a mobile device it can be the Div that contains the Hamburger icon
+        if (document.getElementById(uIElement).style.display !== "none")
+            document.getElementById(uIElement).style.display = "none";
         else
+            document.getElementById(uIElement).style.display = "block";
 
-            document.getElementById(parent).style.display = "block";
-
-        if (parent === 'navId')
+        if (uIElement === 'navId')
             return;
 
+        //If not the Hamburger icon then close Last Category that was expanded.
         try {
-            if (last !== "first") {
-                var ull = document.getElementById(last);
+            if (LastCategory !== "first") {
+                var ull = document.getElementById(LastCategory);
                 if (ull)
                     ull.style.display = "none";
             }
         } catch (err)
         {
-            alert("MyFunction " + err.Message) +" " + last;
+            alert("ToggleVisibility " + err.Message) +" " + LastCategory;
         }
-
-        last = parent;
-        sessionStorage.last = last;
-
-
+        //Same new Category as Last Category
+        LastCategory = uIElement;
+        sessionStorage.last = LastCategory;
     }
-
-
-
 </script>
