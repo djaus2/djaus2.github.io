@@ -92,9 +92,11 @@
 
 <script>
 
+    var last = "First";
+
     function myFunction(parent) {
 
-        //alert(parent);
+        alert(last);
 
         if (document.getElementById(parent).style.display !== "none")
 
@@ -103,6 +105,8 @@
         else
 
             document.getElementById(parent).style.display = "block";
+
+        last = parent;
 
     }
 
