@@ -72,19 +72,20 @@
 <script>
     //Set all child pages to hidden except for last category if page was navigated to from the menu.
     var last = "First";
-    if (sessionStorage.last)
-        last = sessionStorage.last;
-    //alert(last);
+
 
     try {
+        if (sessionStorage.last)
+            last = sessionStorage.last;
+            //alert(last);
         if (last !== "first") {
 
             if ('{{ attr2 }}' !== last)
                 document.getElementById('{{ attr2 }}').style.display = "none";
         }
     } catch (err) {
-        alert(err.Message);
-        alert(last);
+        //alert(err.Message);
+        //alert(last);
     }
 
 </script>
