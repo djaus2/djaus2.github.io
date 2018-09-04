@@ -97,8 +97,7 @@
     function myFunction(parent) {
 
         //alert(last);
-        if (last !== "first")
-            document.getElementById(last).style.display = "none";
+
 
         if (document.getElementById(parent).style.display !== "none")
 
@@ -107,6 +106,18 @@
         else
 
             document.getElementById(parent).style.display = "block";
+
+        try {
+            if (last !== "first") {
+                var ull = document.getElementById(last);
+                if (ull)
+                    ull.style.display = "none";
+            }
+        } catch (err)
+        {
+            alert(err.Message);
+            alert(last);
+        }
 
         last = parent;
 
