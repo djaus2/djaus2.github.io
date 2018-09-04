@@ -71,6 +71,9 @@
 
 <script>
     var last = "First";
+    if (sessionStorage.last)
+        last = sessionStorage.last;
+    alert(last);
 
     try {
         if (last !== "first") {
@@ -132,6 +135,8 @@
         }
 
         last = parent;
+        sessionStorage.last = last;
+
 
     }
 
