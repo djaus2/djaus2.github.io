@@ -70,10 +70,11 @@
     {% assign label2 = section[1] %}
 
 <script>
+    //Set all child pages to hidden except for last category if page was navigated to from the menu.
     var last = "First";
     if (sessionStorage.last)
         last = sessionStorage.last;
-    alert(last);
+    //alert(last);
 
     try {
         if (last !== "first") {
@@ -85,8 +86,6 @@
         alert(err.Message);
         alert(last);
     }
-
-    //document.getElementById('{{ attr2 }}').style.display = "none";
 
 </script>
 
