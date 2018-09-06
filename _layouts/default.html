@@ -67,6 +67,7 @@
                     header,
                     sections = [],
                     lists = {},
+                    lists2 = {},
                     headers = {};
 
                                 
@@ -106,12 +107,16 @@
                         return a[0] - b[0];
                     });
 
-                    if (header == headers[section]) {
+                    if (header = headers[section]) {
                         navUl.appendChild(header);
                     }
+                    //list2 = {};
+                    for (var jj = 0; jj < list.length; j++) {
+                        list2.add(list[list.length - 1 - jj]);
+                    }
+
                     for (var j = 0; j < list.length; j++) {
-                        var jj = list.length - 1 - j;
-                        navUl.appendChild(list[jj][1]);
+                        navUl.appendChild(list2[j][1]);
                     }
                 }
             }
