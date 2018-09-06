@@ -72,7 +72,7 @@
 
                                 
                 var locationObj = document.location.href;
-                alert(locationObj);
+                //alert(locationObj);
                 
                 var navUl = document.querySelectorAll('#navigation ul')[0],
                     navLis = document.querySelectorAll('#navigation ul li');
@@ -91,8 +91,8 @@
 
                     var link = li.childNodes[0];
                     var att = link.getAttribute('href');
-                    if (att)
-                        alert(att);
+                    //if (att)
+                    //    alert(att);
                     if (locationObj && link && locationObj.endsWith(link.getAttribute('href'))) {
                         li.classList.add('active');
                     }
