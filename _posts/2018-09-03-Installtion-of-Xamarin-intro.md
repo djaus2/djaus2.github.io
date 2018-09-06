@@ -3,7 +3,7 @@ layout: page
 title: Installtion of Xamarin
 subtitle: Visual Studio
 category: intro
-date: 2018-09-04 11:24:11
+date: 2018-09-03 11:24:11
 ---
 
 

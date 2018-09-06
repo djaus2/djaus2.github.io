@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Embeedd Stuff
-category: post
+category: res
 date: 2018-09-01 18:58:03
 ---
 
