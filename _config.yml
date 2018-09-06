@@ -26,8 +26,7 @@ sections: [
     ['tut', 'Tutorial'],
     ['ref', 'Reference'],
     ['dev', 'Developers'],
-    ['post', 'Posts'],
-    ['xamsample', 'Xaml Samples']
+    ['post', 'Posts']
 ]
 
 # Keep as an empty string if served up at the root. If served up at a specific
