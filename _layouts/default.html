@@ -109,7 +109,8 @@
                         navUl.appendChild(header);
                     }
                     for (var j = 0; j < list.length; j++) {
-                        navUl.appendChild(list[j][1]);
+                        var jj = list.length -1 - j;
+                        navUl.appendChild(list[jj][1]);
                     }
                 }
             }
