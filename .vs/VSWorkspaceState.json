@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
-    "\\images",
     "\\_includes",
     "\\_layouts"
   ],
-  "SelectedNode": "\\images\\xamarin101.jpg",
+  "SelectedNode": "\\_layouts\\default.html",
   "PreviewInSolutionExplorer": false
 }
