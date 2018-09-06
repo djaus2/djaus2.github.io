@@ -102,15 +102,14 @@
                 for (var i = 0; i < sections.length; i++) {
                     section = sections[i];
                     list = lists[section].sort(function(a, b) {
-                        return a[0] - b[0];
+                        return b[0] - a[0];
                     });
 
                     if (header = headers[section]) {
                         navUl.appendChild(header);
                     }
                     for (var j = 0; j < list.length; j++) {
-                        var jj = list.length -1 - j;
-                        navUl.appendChild(list[jj][1]);
+                        navUl.appendChild(list[j][1]);
                     }
                 }
             }
